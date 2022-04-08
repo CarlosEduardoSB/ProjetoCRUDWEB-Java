@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head> <title>Lista das Sobremesas</title> </h:head>
+	<body>
+		
+		<center>
+	
+		<h:panelGroup>
+		
+		<center><h2>Sobremeas Cadastradas</h2></center>
+	
+		</h:panelGroup>
+		<h:form id="form-1">
+		<p:messages id="messages" showDetail="true" closable="true" autoUpdate="true"/>
+		<p:panel header="Sobemesas">
+
+		<p:dataTable id="sobremesas" value="#{sobremesaBean.listaSobremesas}" var="sobremesa" rowKey="#{sobremesa.id}">
+			<p:column headerText="Id da Sobremesa">
+			<p:outputLabel value="#{sobremesa.id}" />
+			</p:column>
+				
+			<p:column headerText="Nome">
+			<p:outputLabel value="#{sobremesa.nome}" />
+			</p:column>
+			
+			<p:column headerText="Tipo de Sobremesa">
+			<p:outputLabel value="#{sobremesa.tipo}" />
+			</p:column>
+			
+			<p:column headerText="Ingredientes">
+			<p:outputLabel value="#{sobremesa.ingredientes}" />
+			</p:column>
+			
+			<p:column headerText="Modo de Preparo">
+			<p:outputLabel value="#{sobremesa.modoDePreparo}" />
+			</p:column>
+
+			<p:column headerText="Data de Cadastro">
+			<p:outputLabel value="#{sobremesa.dataCadastro}" />
+			</p:column>
+
+			<p:column headerText="Editar">
+			<p:commandLink value="Editar" uptade="sobremesas" action="edicao.xhtml" ajax="false">
+		    <f:setPropertyActionListener value="#{sobremesa}" target="#{sobremesaBean.sobremesa}" />
+			</p:commandLink>
+			</p:column>
+
+			<p:column headerText="Excluir">
+			<p:commandButton type="button" icon="pi pi-trash" 
+				styleClass="rounded-button ui-button-danger ui-button-flat" />
+			<p:commandLink value="Deletar" action="#{sobremesaBean.excluir}" ajax="false">
+			<f:setPropertyActionListener value="#{sobremesa}" target="#{sobremesaBean.sobremesa}" />
+			</p:commandLink>
+			</p:column>
+
+		</p:dataTable>
+
+		</p:panel>
+		
+		<p></p>
+		
+		<p:commandButton styleClass="ui-button-raised ui-button-raised"
+			id="Contar" value="Número de Sobremesas Registradas"
+			action="#{sobremesaBean.contar}" update="form-1">
+		</p:commandButton>
+		
+		<p></p>
+		
+		<a href="index.xhtml">Voltar para Cadastro!</a>
+		
+		</h:form>
+		
+	    </center>
+</body>
+
+</html>
